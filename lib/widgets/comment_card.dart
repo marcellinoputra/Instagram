@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:instagram/models/user.dart';
 import 'package:instagram/providers/user_providers.dart';
+import 'package:instagram/utils/colors.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CommentCard extends StatefulWidget {
-  const CommentCard({Key? key}) : super(key: key);
+  final snap;
+  const CommentCard({Key? key, required this.snap}) : super(key: key);
 
   @override
   State<CommentCard> createState() => _CommentCardState();
@@ -20,7 +23,7 @@ class _CommentCardState extends State<CommentCard> {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundImage: NetworkImage(user!.photoUrl),
+            backgroundImage: NetworkImage(widget.snap['profilePic']),
             radius: 18,
           ),
           Expanded(
@@ -33,16 +36,18 @@ class _CommentCardState extends State<CommentCard> {
                     RichText(
                         text: TextSpan(children: [
                       TextSpan(
-                          text: user.username,
-                          style: TextStyle(fontWeight: FontWeight.bold)),
-                      TextSpan(text: 'some description')
+                          text: widget.snap['name'],
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+
+                      TextSpan(text: ' ${widget.snap['text']}')
                     ])),
-                    const Padding(
-                      padding: EdgeInsets.only(top: 4),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 4),
                       child: Text(
-                        '23/12/22',
-                        style: TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.w400),
+                        DateFormat.yMMMd()
+                            .format(widget.snap['datePublished'].toDate()),
+                        style: const TextStyle(
+                            fontSize: 14, color: secondaryColor),
                       ),
                     )
                   ],
