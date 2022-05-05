@@ -71,7 +71,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
   void navigateToLogin() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => LoginScreen()));
+        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   @override
@@ -84,7 +84,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Column(
             // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               SvgPicture.asset("assets/ic_instagram.svg",
