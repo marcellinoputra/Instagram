@@ -21,6 +21,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
 
   @override
   void dispose() {
+    // ignore: todo
     // TODO: implement dispose
     super.dispose();
     _commentController.dispose();
